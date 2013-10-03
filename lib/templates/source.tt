@@ -1,0 +1,17 @@
+# Encoding: utf-8
+
+<%
+spacing = ''
+@class_parts[0..-2].each do |namespace|
+%><%= spacing + 'module ' + namespace %>
+<%
+spacing+= '  '
+end %><%= spacing + 'class ' + @class_parts.last %>
+
+<%= spacing + 'end' %><% loop do
+    l = spacing.length - 2
+    spacing = l >= 0 ? ' '*l : ''
+%>
+<%= spacing + 'end' %><%
+break if l == 0
+end %>

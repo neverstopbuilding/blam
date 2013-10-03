@@ -15,6 +15,7 @@ Scenario: Specifying the source path
     Then the following files should exist:
         | other/dir/name_space/class_name.rb |
 
+
 Scenario: A trailing slash should not matter
     Given I run `bundle exec blam NameSpace::ClassName --source_dir=other/dir/`
     Then the following files should exist:
@@ -67,3 +68,19 @@ Scenario: Overriding the .blam file with cli options
         | tests/unit/lib/name_space/class_name_example.rb        |
         | tests/integration/lib/name_space/class_name_example.rb |
         | tests/system/lib/name_space/class_name_example.rb      |
+
+Scenario: Create the correct source file
+Given I run `bundle exec blam NameSpace::OtherSpace::ClassName`
+    And the file "lib/name_space/other_space/class_name.rb" should contain exactly:
+"""
+# Encoding: utf-8
+
+module NameSpace
+  module OtherSpace
+    class ClassName
+
+    end
+  end
+end
+
+"""

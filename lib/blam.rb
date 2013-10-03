@@ -21,6 +21,7 @@ class Blam < Thor::Group
 
   def create_source_file
     dir = opts[:source_dir]
+    @class_parts = name.split('::')
     template('templates/source.tt', "#{dir}/#{get_path(name)}.rb")
   end
 
