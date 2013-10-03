@@ -84,3 +84,15 @@ module NameSpace
 end
 
 """
+    And the file "spec/name_space/other_space/class_name_spec.rb" should contain exactly:
+"""
+# Encoding: utf-8
+
+require 'spec_helper'
+require 'name_space/other_space/class_name'
+
+describe NameSpace::OtherSpace::ClassName do
+
+end
+
+"""

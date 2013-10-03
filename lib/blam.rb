@@ -30,6 +30,8 @@ class Blam < Thor::Group
     test_suffix = opts[:test_suffix]
     test_template = test_suffix == 'rspec' ? 'rspec' : 'test'
     dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs]
+    @name = name
+    @path = get_path(name)
     dirs.each do |dir|
       template("templates/#{test_template}.tt", "#{dir}/#{get_path(name)}_#{test_suffix}.rb")
     end
