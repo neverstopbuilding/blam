@@ -4,7 +4,6 @@ require 'thor/group'
 require 'yaml'
 
 class Blam < Thor::Group
-  VERSION = '1.0.0'
 
   include Thor::Actions
 

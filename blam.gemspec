@@ -2,11 +2,10 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'blam'
 
 Gem::Specification.new do |spec|
   spec.name          = 'blam'
-  spec.version       = Blam::VERSION
+  spec.version       = '1.0.0'
   spec.authors       = ['Jason Fox']
   spec.email         = ['jasonrobertfox@gmail.com']
   spec.description   = %q{Blam: quickly create ruby source and test files in the right place.}
