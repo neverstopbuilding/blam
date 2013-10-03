@@ -22,7 +22,8 @@ class Blam < Thor::Group
   def create_source_file
     dir = opts[:source_dir]
     @class_parts = name.split('::')
-    template('templates/source.tt', "#{dir}/#{get_path(name)}.rb")
+    file_name = "#{dir}/#{get_path(name)}.rb"
+    template('templates/source.tt', file_name) unless File.exists?(file_name)
   end
 
   def create_test_file
@@ -33,7 +34,8 @@ class Blam < Thor::Group
     dirs.each do |dir|
       @name = name
       @path = get_path(name)
-      template("templates/#{test_template}.tt", "#{dir}/#{get_path(name)}_#{test_suffix}.rb")
+      file_name = "#{dir}/#{get_path(name)}_#{test_suffix}.rb"
+      template("templates/#{test_template}.tt", file_name) unless File.exists?(file_name)
     end
   end
 

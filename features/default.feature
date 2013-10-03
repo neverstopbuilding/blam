@@ -110,3 +110,14 @@ class NameSpace::OtherSpace::ClassNameTest do
 end
 
 """
+
+Scenario: Don't overwrite existing files
+      Given a file named "lib/name_space/class_name.rb" with:
+"""
+Important Code
+"""
+        When I run `bundle exec blam NameSpace::ClassName`
+        Then the file "lib/name_space/class_name.rb" should contain exactly:
+"""
+Important Code
+"""
