@@ -1,8 +1,8 @@
 # Encoding: utf-8
 
 require 'spec_helper'
-require '<%= path %>'
+require '<%= @path %>'
 
-describe <%= name %> do
+describe <%= @name %> do
 
 end

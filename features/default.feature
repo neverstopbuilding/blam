@@ -69,9 +69,9 @@ Scenario: Overriding the .blam file with cli options
         | tests/integration/lib/name_space/class_name_example.rb |
         | tests/system/lib/name_space/class_name_example.rb      |
 
-Scenario: Create the correct source file
+Scenario: Create the correct source  and test file
 Given I run `bundle exec blam NameSpace::OtherSpace::ClassName`
-    And the file "lib/name_space/other_space/class_name.rb" should contain exactly:
+    Then the file "lib/name_space/other_space/class_name.rb" should contain exactly:
 """
 # Encoding: utf-8
 
@@ -92,6 +92,20 @@ require 'spec_helper'
 require 'name_space/other_space/class_name'
 
 describe NameSpace::OtherSpace::ClassName do
+
+end
+
+"""
+
+Scenario: Create the correct alternative test file
+Given I run `bundle exec blam NameSpace::OtherSpace::ClassName --test_suffix=test`
+    Then the file "spec/name_space/other_space/class_name_test.rb" should contain exactly:
+"""
+# Encoding: utf-8
+
+require 'name_space/other_space/class_name'
+
+class NameSpace::OtherSpace::ClassNameTest do
 
 end
 

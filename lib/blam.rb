@@ -28,11 +28,11 @@ class Blam < Thor::Group
   def create_test_file
     dirs = [opts[:tests_dir]]
     test_suffix = opts[:test_suffix]
-    test_template = test_suffix == 'rspec' ? 'rspec' : 'test'
+    test_template = test_suffix == 'spec' ? 'rspec' : 'test'
     dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs]
-    @name = name
-    @path = get_path(name)
     dirs.each do |dir|
+      @name = name
+      @path = get_path(name)
       template("templates/#{test_template}.tt", "#{dir}/#{get_path(name)}_#{test_suffix}.rb")
     end
   end
