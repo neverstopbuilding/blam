@@ -12,30 +12,58 @@ Then the following directories should exist:
 
 Scenario: Specifying the source path
     Given I run `bundle exec blam NameSpace::ClassName --source_dir=other/dir`
-    And the following files should exist:
+    Then the following files should exist:
         | other/dir/name_space/class_name.rb |
 
 Scenario: A trailing slash should not matter
     Given I run `bundle exec blam NameSpace::ClassName --source_dir=other/dir/`
-    And the following files should exist:
+    Then the following files should exist:
         | other/dir/name_space/class_name.rb |
 
 Scenario: Specifying the test path
     Given I run `bundle exec blam NameSpace::ClassName --tests_dir=spec/unit/lib`
-    And the following files should exist:
+    Then the following files should exist:
         | spec/unit/lib/name_space/class_name_spec.rb |
 
 Scenario: Specifying the test suffix
     Given I run `bundle exec blam NameSpace::ClassName --test_suffix=test`
-    And the following files should exist:
+    Then the following files should exist:
         | spec/name_space/class_name_test.rb |
 
 Scenario: Specifying additional test directories
     Given I run `bundle exec blam NameSpace::ClassName --tests_dir=spec/unit/lib --additional-test-dirs=spec/integration/lib spec/system/lib`
-    And the following files should exist:
-      | lib/name_space/class_name.rb       |
-      | spec/unit/lib/name_space/class_name_spec.rb |
-      | spec/integration/lib/name_space/class_name_spec.rb |
-      | spec/system/lib/name_space/class_name_spec.rb |
+    Then the following files should exist:
+        | lib/name_space/class_name.rb                       |
+        | spec/unit/lib/name_space/class_name_spec.rb        |
+        | spec/integration/lib/name_space/class_name_spec.rb |
+        | spec/system/lib/name_space/class_name_spec.rb      |
 
+Scenario: Specifying default settings with a .blam file
+      Given a file named ".blam" with:
+        """
+        tests_dir: spec/unit/lib
+        additional_test_dirs: [spec/integration/lib, spec/system/lib]
+        source_dir: src
+        test_suffix: test
+        """
+        When I run `bundle exec blam NameSpace::ClassName`
+        Then the following files should exist:
+            | src/name_space/class_name.rb                       |
+            | spec/unit/lib/name_space/class_name_test.rb        |
+            | spec/integration/lib/name_space/class_name_test.rb |
+            | spec/system/lib/name_space/class_name_test.rb      |
 
+Scenario: Overriding the .blam file with cli options
+    Given a file named ".blam" with:
+        """
+        tests_dir: spec/unit/lib
+        additional_test_dirs: [spec/integration/lib, spec/system/lib]
+        source_dir: src
+        test_suffix: test
+        """
+    When I run `bundle exec blam NameSpace::ClassName --tests_dir=tests/unit/lib --additional-test-dirs=tests/integration/lib tests/system/lib --source_dir=code --test_suffix=example `
+    Then the following files should exist:
+        | code/name_space/class_name.rb                       |
+        | tests/unit/lib/name_space/class_name_example.rb        |
+        | tests/integration/lib/name_space/class_name_example.rb |
+        | tests/system/lib/name_space/class_name_example.rb      |
