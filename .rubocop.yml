@@ -9,3 +9,7 @@ SymbolName:
 
 Documentation:
   Enabled: false
+
+AllCops:
+    Excludes:
+        - build
