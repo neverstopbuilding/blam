@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'blam/blam'
+require 'rubygems'
+require 'blam'
 
 Blam.start

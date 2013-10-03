@@ -1,24 +1,25 @@
-# coding: utf-8
+# Encoding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'blam/version'
+require 'blam'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'blam'
+  spec.name          = "blam"
   spec.version       = Blam::VERSION
-  spec.authors       = ['Jason Fox']
-  spec.email         = ['jasonrobertfox@gmail.com']
+  spec.authors       = ["Jason Fox"]
+  spec.email         = ["jasonrobertfox@gmail.com"]
   spec.description   = %q{Blam: quickly create ruby source and test files in the right place.}
   spec.summary       = %q{With a single command Blam will create your source file and any test files in the right directories based on namespace.}
-  spec.homepage      = ''
-  spec.license       = 'MIT'
+  spec.homepage      = ""
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ['lib']
+  spec.require_paths = ["lib"]
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "rake"
   spec.add_dependency 'thor'
 end

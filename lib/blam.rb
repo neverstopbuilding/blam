@@ -1,9 +1,10 @@
 # Encoding: utf-8
 
-require 'blam/version'
 require 'thor'
 
 class Blam < Thor::Group
+  VERSION = "0.0.1"
+
   include Thor::Actions
 
   argument :name
