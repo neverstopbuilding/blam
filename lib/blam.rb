@@ -4,7 +4,7 @@ require 'thor/group'
 require 'yaml'
 
 class Blam < Thor::Group
-  VERSION = "0.0.1"
+  VERSION = '1.0.0'
 
   include Thor::Actions
 
@@ -46,19 +46,19 @@ class Blam < Thor::Group
     end
 
     def opts
-      default_opts = { source_dir: 'lib', tests_dir: 'spec', test_suffix: 'spec'}
+      default_opts = { source_dir: 'lib', tests_dir: 'spec', test_suffix: 'spec' }
       cli_opts = symbolize(options)
       return default_opts.merge(cli_opts) unless File.exists?('.blam')
-      raw_file_opts = ::YAML::load_file('.blam') || {}
+      raw_file_opts = ::YAML.load_file('.blam') || {}
       file_opts = symbolize(raw_file_opts)
       default_opts.merge(file_opts).merge(cli_opts)
-  end
+    end
 
-  def symbolize(hash)
-    new_hash = {}
-      hash.each do |key, value|
-        new_hash[key.to_sym] = value
-      end
-      new_hash
-  end
+    def symbolize(hash)
+      new_hash = {}
+        hash.each do |key, value|
+          new_hash[key.to_sym] = value
+        end
+        new_hash
+    end
 end

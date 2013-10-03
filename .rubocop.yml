@@ -1,0 +1,11 @@
+LineLength:
+  Enabled: false
+
+MethodLength:
+  Max: 30
+
+SymbolName:
+  AllowCamelCase: false
+
+Documentation:
+  Enabled: false
