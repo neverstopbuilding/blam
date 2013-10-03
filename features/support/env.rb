@@ -1,5 +1,6 @@
 # Encoding: utf-8
 
+require 'blam'
 require 'aruba/cucumber'
 
 Before do

@@ -2,11 +2,11 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'blam'
+require 'blam/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'blam'
-  spec.version       = Blam::VERSION
+  spec.version       = Blam::Version::VERSION
   spec.authors       = ['Jason Fox']
   spec.email         = ['jasonrobertfox@gmail.com']
   spec.description   = %q{Blam: quickly create ruby source and test files in the right place.}
@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'aruba'
-  spec.add_development_dependency 'cucumber'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rubocop'
   spec.add_dependency 'thor'
