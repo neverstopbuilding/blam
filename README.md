@@ -1,4 +1,4 @@
-# BLAM! [![Build Status](https://travis-ci.org/neverstopbuilding/blam.png?branch=develop)](https://travis-ci.org/neverstopbuilding/blam)
+# BLAM! [![Build Status](https://travis-ci.org/neverstopbuilding/blam.png?branch=develop)](https://travis-ci.org/neverstopbuilding/blam) [![Gem Version](https://badge.fury.io/rb/blam.png)](http://badge.fury.io/rb/blam)
 
 ##Create ruby files quickly on the command line. BLAM!
 
