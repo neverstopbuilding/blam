@@ -1,0 +1,7 @@
+# Encoding: utf-8
+
+require '<%= @path %>'
+
+class <%= @name + 'Test' %> do
+
+end
