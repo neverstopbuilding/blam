@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['jasonrobertfox@gmail.com']
   spec.description   = %q{Blam: quickly create ruby source and test files in the right place.}
   spec.summary       = %q{With a single command Blam will create your source file and any test files in the right directories based on namespace.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/neverstopbuilding/blam'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
