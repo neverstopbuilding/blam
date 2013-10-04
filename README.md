@@ -21,7 +21,7 @@ Or install it yourself as:
 ## Usage
 
     $ blam BeastlyModule::DopeClass
-    
+
 By default creates these files:
 
     - lib
@@ -30,7 +30,7 @@ By default creates these files:
     - spec
         - beastly_module
             - dope_class_spec.rb
-            
+
 The class file has:
 
 ```ruby
@@ -43,7 +43,7 @@ module BeastlyModule
 end
 ```
 
-The spec file has: 
+The spec file has:
 
 ```ruby
 # Encoding: utf-8
@@ -60,7 +60,7 @@ end
 
 - **--source-dir** - Pass an alternative directory to `lib` in which the source files will be created.
 - **--tests-dir** - Pass an alternative directory to `spec` in which the test files will be created.
-- **--test-suffix** - Change the suffix from the test files from the default `spec` to anything you like. Non spec suffixes will get a default class template rather than an rspec class template. 
+- **--test-suffix** - Change the suffix from the test files from the default `spec` to anything you like. Non spec suffixes will get a default class template rather than an rspec class template.
 - **--additional-test-dirs** - Add other directories to create additional test files. This can be helpful for breaking up your tests into folders like `spec/unit` `spec/integration`
 
 ###.blam File
