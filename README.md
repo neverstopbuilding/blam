@@ -62,6 +62,8 @@ end
 - **--tests-dir** - Pass an alternative directory to `spec` in which the test files will be created.
 - **--test-suffix** - Change the suffix from the test files from the default `spec` to anything you like. Non spec suffixes will get a default class template rather than an rspec class template.
 - **--additional-test-dirs** - Add other directories to create additional test files. This can be helpful for breaking up your tests into folders like `spec/unit` `spec/integration`
+- **--no-tests** - Regardless of your settings it will not create the test files. This is bad. And you are lazy for using this option.
+- **--just-unit** - This will not create files if you have specified additional test directories, helpful when you just want a unit test and don't need an integration test as well.
 
 ###.blam File
 
