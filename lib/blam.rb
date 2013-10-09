@@ -13,6 +13,8 @@ class Blam < Thor::Group
   class_option :tests_dir
   class_option :test_suffix
   class_option :additional_test_dirs, type: :array
+  class_option :no_tests, type: :boolean
+  class_option :just_unit, type: :boolean
 
   def self.source_root
     File.dirname(__FILE__)
@@ -26,15 +28,19 @@ class Blam < Thor::Group
   end
 
   def create_test_file
-    dirs = [opts[:tests_dir]]
-    test_suffix = opts[:test_suffix]
-    test_template = test_suffix == 'spec' ? 'rspec' : 'test'
-    dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs]
-    dirs.each do |dir|
-      @name = name
-      @path = get_path(name)
-      file_name = "#{dir}/#{get_path(name)}_#{test_suffix}.rb"
-      template("templates/#{test_template}.tt", file_name) unless File.exists?(file_name)
+    if opts[:no_tests]
+      puts 'Skipped the tests, you lazy piece of shit!'
+    else
+      dirs = [opts[:tests_dir]]
+      test_suffix = opts[:test_suffix]
+      test_template = test_suffix == 'spec' ? 'rspec' : 'test'
+      dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs] && ! opts[:just_unit]
+      dirs.each do |dir|
+        @name = name
+        @path = get_path(name)
+        file_name = "#{dir}/#{get_path(name)}_#{test_suffix}.rb"
+        template("templates/#{test_template}.tt", file_name) unless File.exists?(file_name)
+      end
     end
   end
 
