@@ -121,3 +121,36 @@ Important Code
 """
 Important Code
 """
+
+Scenario: Don't create test files if there is an over ride
+      Given a file named ".blam" with:
+        """
+        tests_dir: spec/unit/lib
+        additional_test_dirs: [spec/integration/lib, spec/system/lib]
+        source_dir: src
+        test_suffix: test
+        """
+        When I run `bundle exec blam --no-tests NameSpace::ClassName`
+        Then the following files should exist:
+            | src/name_space/class_name.rb                       |
+        And the output should contain "Skipped the tests, you lazy piece of shit!"
+        And the following files should not exist:
+            | spec/unit/lib/name_space/class_name_test.rb        |
+            | spec/integration/lib/name_space/class_name_test.rb |
+            | spec/system/lib/name_space/class_name_test.rb      |
+
+Scenario: Only create the unit tests with an over ride
+      Given a file named ".blam" with:
+        """
+        tests_dir: spec/unit/lib
+        additional_test_dirs: [spec/integration/lib, spec/system/lib]
+        source_dir: src
+        test_suffix: test
+        """
+        When I run `bundle exec blam --just-unit NameSpace::ClassName`
+        Then the following files should exist:
+            | src/name_space/class_name.rb                       |
+            | spec/unit/lib/name_space/class_name_test.rb        |
+        And the following files should not exist:
+            | spec/integration/lib/name_space/class_name_test.rb |
+            | spec/system/lib/name_space/class_name_test.rb      |
