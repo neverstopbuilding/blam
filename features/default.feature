@@ -54,6 +54,17 @@ Scenario: Specifying default settings with a .blam file
             | spec/integration/lib/name_space/class_name_test.rb |
             | spec/system/lib/name_space/class_name_test.rb      |
 
+Scenario: Initializing a .blam file
+    Given I run `bundle exec blam --init`
+    Then the file ".blam" should contain exactly:
+"""
+tests_dir: spec/unit/lib
+source_dir: lib
+test_suffix: spec
+# additional_test_dirs: [spec/integration/lib, spec/system/lib]
+
+"""
+
 Scenario: Overriding the .blam file with cli options
     Given a file named ".blam" with:
         """
