@@ -4,7 +4,6 @@ require 'thor/group'
 require 'yaml'
 
 class Blam < Thor::Group
-
   include Thor::Actions
 
   argument :name
@@ -18,6 +17,14 @@ class Blam < Thor::Group
 
   def self.source_root
     File.dirname(__FILE__)
+  end
+
+  def init
+    if name == '--init'
+      file_name = '.blam'
+      template('templates/blam.tt', file_name) unless File.exists?(file_name)
+      exit(0)
+    end
   end
 
   def create_source_file
@@ -34,7 +41,7 @@ class Blam < Thor::Group
       dirs = [opts[:tests_dir]]
       test_suffix = opts[:test_suffix]
       test_template = test_suffix == 'spec' ? 'rspec' : 'test'
-      dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs] && ! opts[:just_unit]
+      dirs.concat opts[:additional_test_dirs] if opts[:additional_test_dirs] && !opts[:just_unit]
       dirs.each do |dir|
         @name = name
         @path = get_path(name)

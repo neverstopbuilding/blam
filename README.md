@@ -64,6 +64,7 @@ end
 - **--additional-test-dirs** - Add other directories to create additional test files. This can be helpful for breaking up your tests into folders like `spec/unit` `spec/integration`
 - **--no-tests** - Regardless of your settings it will not create the test files. This is bad. And you are lazy for using this option.
 - **--just-unit** - This will not create files if you have specified additional test directories, helpful when you just want a unit test and don't need an integration test as well.
+- **--init** - Create a default `.blam` file as detailed below.
 
 ###.blam File
 
@@ -75,6 +76,8 @@ additional_test_dirs: [spec/integration/lib, spec/system/lib]
 source_dir: lib
 test_suffix: spec
 ```
+
+To initialize a default file for your project, just run `blam --init`
 
 Don't worry, you can override these with the command line options any time. Blam!
 
