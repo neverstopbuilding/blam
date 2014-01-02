@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'blam'
-  spec.version       = '1.2.0'
+  spec.version       = '1.3.0'
   spec.authors       = ['Jason Fox']
   spec.email         = ['jasonrobertfox@gmail.com']
   spec.description   = %q{Blam: quickly create ruby source and test files in the right place.}

@@ -3,5 +3,4 @@
 require '<%= @path %>'
 
 class <%= @name + 'Test' %> do
-
 end

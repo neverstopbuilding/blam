@@ -10,6 +10,19 @@ Then the following directories should exist:
       | lib/name_space/class_name.rb       |
       | spec/name_space/class_name_spec.rb |
 
+Scenario: Creating a top level module
+    Given I run `bundle exec blam ModuleName`
+    Then the file "lib/module_name.rb" should contain exactly:
+"""
+# Encoding: utf-8
+
+module ModuleName
+end
+
+"""
+    And the following files should exist:
+        | spec/module_name_spec.rb |
+
 Scenario: Specifying the source path
     Given I run `bundle exec blam NameSpace::ClassName --source_dir=other/dir`
     Then the following files should exist:
@@ -89,7 +102,6 @@ Given I run `bundle exec blam NameSpace::OtherSpace::ClassName`
 module NameSpace
   module OtherSpace
     class ClassName
-
     end
   end
 end
@@ -103,7 +115,6 @@ require 'spec_helper'
 require 'name_space/other_space/class_name'
 
 describe NameSpace::OtherSpace::ClassName do
-
 end
 
 """
@@ -117,7 +128,6 @@ Given I run `bundle exec blam NameSpace::OtherSpace::ClassName --test_suffix=tes
 require 'name_space/other_space/class_name'
 
 class NameSpace::OtherSpace::ClassNameTest do
-
 end
 
 """

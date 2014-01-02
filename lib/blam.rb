@@ -31,7 +31,11 @@ class Blam < Thor::Group
     dir = opts[:source_dir]
     @class_parts = name.split('::')
     file_name = "#{dir}/#{get_path(name)}.rb"
-    template('templates/source.tt', file_name) unless File.exists?(file_name)
+    if @class_parts.count == 1
+      template('templates/module.tt', file_name) unless File.exists?(file_name)
+    else
+      template('templates/source.tt', file_name) unless File.exists?(file_name)
+    end
   end
 
   def create_test_file
@@ -53,24 +57,24 @@ class Blam < Thor::Group
 
   private
 
-    def get_path(name)
-      name.gsub(/::/, '/').gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z\d])([A-Z])/, '\1_\2').tr('-', '_').downcase
-    end
+  def get_path(name)
+    name.gsub(/::/, '/').gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z\d])([A-Z])/, '\1_\2').tr('-', '_').downcase
+  end
 
-    def opts
-      default_opts = { source_dir: 'lib', tests_dir: 'spec', test_suffix: 'spec' }
-      cli_opts = symbolize(options)
-      return default_opts.merge(cli_opts) unless File.exists?('.blam')
-      raw_file_opts = ::YAML.load_file('.blam') || {}
-      file_opts = symbolize(raw_file_opts)
-      default_opts.merge(file_opts).merge(cli_opts)
-    end
+  def opts
+    default_opts = { source_dir: 'lib', tests_dir: 'spec', test_suffix: 'spec' }
+    cli_opts = symbolize(options)
+    return default_opts.merge(cli_opts) unless File.exists?('.blam')
+    raw_file_opts = ::YAML.load_file('.blam') || {}
+    file_opts = symbolize(raw_file_opts)
+    default_opts.merge(file_opts).merge(cli_opts)
+  end
 
-    def symbolize(hash)
-      new_hash = {}
-        hash.each do |key, value|
-          new_hash[key.to_sym] = value
-        end
-        new_hash
+  def symbolize(hash)
+    new_hash = {}
+    hash.each do |key, value|
+      new_hash[key.to_sym] = value
     end
+    new_hash
+  end
 end
