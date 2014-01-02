@@ -31,7 +31,11 @@ class Blam < Thor::Group
     dir = opts[:source_dir]
     @class_parts = name.split('::')
     file_name = "#{dir}/#{get_path(name)}.rb"
-    template('templates/source.tt', file_name) unless File.exists?(file_name)
+    if @class_parts.count == 1
+      template('templates/module.tt', file_name) unless File.exists?(file_name)
+    else
+      template('templates/source.tt', file_name) unless File.exists?(file_name)
+    end
   end
 
   def create_test_file
