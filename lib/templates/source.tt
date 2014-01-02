@@ -7,7 +7,6 @@ spacing = ''
 <%
 spacing+= '  '
 end %><%= spacing + 'class ' + @class_parts.last %>
-
 <%= spacing + 'end' %><% loop do
     l = spacing.length - 2
     spacing = l >= 0 ? ' '*l : ''

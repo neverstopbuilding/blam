@@ -89,7 +89,6 @@ Given I run `bundle exec blam NameSpace::OtherSpace::ClassName`
 module NameSpace
   module OtherSpace
     class ClassName
-
     end
   end
 end
@@ -103,7 +102,6 @@ require 'spec_helper'
 require 'name_space/other_space/class_name'
 
 describe NameSpace::OtherSpace::ClassName do
-
 end
 
 """
@@ -117,7 +115,6 @@ Given I run `bundle exec blam NameSpace::OtherSpace::ClassName --test_suffix=tes
 require 'name_space/other_space/class_name'
 
 class NameSpace::OtherSpace::ClassNameTest do
-
 end
 
 """
